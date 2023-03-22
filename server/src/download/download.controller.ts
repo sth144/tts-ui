@@ -5,6 +5,7 @@ import { createReadStream } from 'fs';
 
 @Controller('download')
 export class DownloadController {
+  // TODO: once authentication is integrated, only show options owned by user
   @Get('')
   private getDownloadOptions() {
     const options = execSync(`ls ${join(process.cwd(), '../output/')}`)
