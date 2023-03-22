@@ -1,0 +1,30 @@
+{
+  "name": "tts-ui",
+  "version": "1.0.0",
+  "description": "A text-to-speech web UI and backend for converting text to dictated MP3 files",
+  "main": "server/dist/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sth144/tts-ui.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sth144/tts-ui/issues"
+  },
+  "homepage": "https://github.com/sth144/tts-ui#readme",
+  "dependencies": {
+    "browser-sync": "^2.29.0",
+    "dotenv": "^16.0.3",
+    "gulp": "^4.0.2",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1"
+  }
+}
