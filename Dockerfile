@@ -3,7 +3,7 @@ FROM debian:bullseye-slim AS base
 RUN apt update
 RUN apt install -y npm \
                     nodejs 
-RUN npm install -g typescript@latest react-scripts create-react-app
+RUN npm install -g typescript@latest
 
 FROM tts-ui:base AS build
 COPY ./lib /usr/src/lib
