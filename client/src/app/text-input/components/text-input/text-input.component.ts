@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { DownloadAudioService } from 'src/app/download-audio/download-audio.service';
+import { TextInputService } from '../../services/text-input.service';
 
 @Component({
   selector: 'app-text-input',
@@ -10,25 +11,14 @@ export class TextInputComponent implements OnInit {
   public title: string = '';
   public body: string = '';
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    private textInputService: TextInputService,
+    private downloadAudioService: DownloadAudioService
+  ) {}
 
   ngOnInit(): void {}
 
   public submitTextInput(): void {
-    // TODO: move this to service
-    this.httpClient
-      .post(
-        '/api/ingest/text-input',
-        {
-          title: this.title,
-          body: this.body,
-        },
-        {
-          responseType: 'text',
-        }
-      )
-      .subscribe((res) => {
-        console.log(res);
-      });
+    this.textInputService.submitTextInput(this.title, this.body);
   }
 }

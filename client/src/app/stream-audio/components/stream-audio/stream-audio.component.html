@@ -1,0 +1,6 @@
+<audio controls src="{{ streamAudioService.FileSourceURL }}">
+  <source type="audio/mpeg" />
+</audio>
+<a
+  (click)="downloadAudioService.downloadFile(streamAudioService.FileSourceURL)"
+></a>

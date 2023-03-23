@@ -1,5 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Select } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { RootState, RootStateModel } from 'src/app/state/root.state';
+import { StreamAudioService } from 'src/app/stream-audio/stream-audio.service';
+import { DownloadAudioService } from '../../download-audio.service';
 
 @Component({
   selector: 'app-download-audio',
@@ -7,33 +11,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./download-audio.component.css'],
 })
 export class DownloadAudioComponent implements OnInit {
+  // TODO: use keys, not strings
+  @Select(RootState.watch('downloadOptions'))
+  public downloadOptions$: Observable<string[]>;
+
   public downloadOptions: string[] = [];
+  public selectedOption: string | null = null;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(
+    public downloadAudioService: DownloadAudioService,
+    private streamAudioService: StreamAudioService
+  ) {}
 
-  ngOnInit(): void {
-    // TODO: move this to service
-    this.httpClient.get('/api/download/').subscribe((res) => {
-      const resultArray = res as Array<string>;
-      this.downloadOptions = resultArray;
-    });
+  async ngOnInit(): Promise<void> {
+    this.downloadOptions = await this.downloadAudioService.getDownloadOptions();
   }
 
-  public downloadOption(option: string): void {
-    // TODO: move this to service
-    this.httpClient
-      .get(`/api/download/${option}`, { responseType: 'blob' })
-      .subscribe((response: any) => {
-        let dataType = response.type;
-        let binaryData = [];
-        binaryData.push(response);
-        let downloadLink = document.createElement('a');
-        downloadLink.href = window.URL.createObjectURL(
-          new Blob(binaryData, { type: dataType })
-        );
-        if (option) downloadLink.setAttribute('download', option);
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-      });
+  public downloadOptionSelected(option: string): void {
+    this.streamAudioService.setFileSource(option);
+
+    this.downloadAudioService.setDownloadOption(option);
+
+    this.selectedOption = option;
   }
 }

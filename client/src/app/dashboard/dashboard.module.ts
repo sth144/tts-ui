@@ -4,6 +4,7 @@ import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { TextInputModule } from '../text-input/text-input.module';
 import { DownloadAudioModule } from '../download-audio/download-audio.module';
+import { StreamAudioModule } from '../stream-audio/stream-audio.module';
 
 @NgModule({
   declarations: [DashboardComponent],
@@ -11,6 +12,7 @@ import { DownloadAudioModule } from '../download-audio/download-audio.module';
     CommonModule,
     TextInputModule,
     DownloadAudioModule,
+    StreamAudioModule,
     DashboardRoutingModule,
   ],
 })
