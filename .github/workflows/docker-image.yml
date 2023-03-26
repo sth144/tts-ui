@@ -12,9 +12,5 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Build the Docker image
-        run:
-          # TODO: get login working
-
-          echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
-          docker build . --tag tts-ui:$(date +%s)
+      - run: echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
+      - run: docker build . --tag tts-ui:$(date +%s)
