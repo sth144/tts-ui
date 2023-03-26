@@ -17,4 +17,4 @@ jobs:
           # TODO: get login working
 
           echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin
-          docker build . --file Dockerfile --tag tts-ui:$(date +%s)
+          docker build . --tag tts-ui:$(date +%s)

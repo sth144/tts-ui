@@ -1,4 +1,5 @@
 # TODO: define storage via PersistentVolumeClaims (replicate?)
+# TODO: mount ssh keys
 ---
 apiVersion: apps/v1
 kind: Deployment
