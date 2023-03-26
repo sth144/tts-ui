@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DownloadAudioComponent } from './components/download-audio/download-audio.component';
 import { DownloadAudioService } from './download-audio.service';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [DownloadAudioComponent],
-  imports: [CommonModule, HttpClientModule, FormsModule],
+  imports: [SharedModule],
   providers: [DownloadAudioService],
   exports: [DownloadAudioComponent],
 })

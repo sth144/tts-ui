@@ -1,3 +1,46 @@
-<p *ngFor="let option of downloadOptions$ | async">
-  <a (click)="downloadOptionSelected(option)">{{ option }}</a>
-</p>
+<a *ngIf="mode == 'display'" (click)="makeEditable()">Edit Paths</a>
+<a *ngIf="mode == 'editable'" (click)="cancelEdits()">cancel</a>
+<button *ngIf="mode == 'editable'" (click)="submitEdits()">
+  Submit Changes
+</button>
+
+<!-- <div *ngFor="let item of downloadOptionsMeta | keyvalue">
+  {{ item.value | json }}
+</div> -->
+
+<div id="download-options">
+  <ul *ngIf="mode == 'display'">
+    <li *ngFor="let option of downloadOptionsMeta | keyvalue">
+      <a
+        *ngIf="
+          option.value.currentValue !== null &&
+          option.value.currentValue.length > 0
+        "
+        (click)="downloadOptionSelected(option.key)"
+        >{{ option.key }}</a
+      >
+    </li>
+  </ul>
+  <ul *ngIf="mode == 'editable'">
+    <span *ngFor="let option of downloadOptionsMeta | keyvalue">
+      <li
+        *ngIf="
+          option.value.currentValue !== null &&
+          option.value.currentValue.length > 0
+        "
+      >
+        <input
+          [value]="option.value.currentValue"
+          (change)="optionEdited(option.key, $event)"
+        />
+        <a (click)="promptDelete(option.key)"
+          ><mat-icon aria-label="Delete">delete_forever</mat-icon></a
+        >
+      </li>
+      <li *ngIf="option.value.currentValue == null">
+        <s>{{ option.key }}</s>
+        <mat-icon (click)="unmarkOptionForDeletion(option.key)">undo</mat-icon>
+      </li>
+    </span>
+  </ul>
+</div>

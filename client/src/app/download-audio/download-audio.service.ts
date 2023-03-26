@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
@@ -8,6 +8,16 @@ import {
   UpdateDownloadOptions,
 } from '../state/root.state';
 import { Observable } from 'rxjs';
+
+export type DownloadOptionMeta = {
+  currentValue: string | null;
+  dirty: boolean;
+  markedForDeletion: boolean;
+};
+
+export interface DownloadOptionsMeta {
+  [key: string]: DownloadOptionMeta;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -41,11 +51,9 @@ export class DownloadAudioService {
   }
 
   public downloadFile(filename: string): void {
-    // TODO: move this to service
-    console.log(filename);
     this.httpClient
       .get(`/api/download/${encodeURI(filename)}`, { responseType: 'blob' })
-      .subscribe((response: any) => {
+      .subscribe((response: Blob) => {
         let dataType = response.type;
         let binaryData = [];
         binaryData.push(response);
@@ -57,5 +65,30 @@ export class DownloadAudioService {
         document.body.appendChild(downloadLink);
         downloadLink.click();
       });
+  }
+
+  public async submitFilePathEdits(
+    downloadOptions: DownloadOptionsMeta
+  ): Promise<void> {
+    const requestBody: Record<string, Partial<DownloadOptionMeta>> = {};
+    for (const key in downloadOptions) {
+      if (downloadOptions[key].dirty) {
+        requestBody[key] = {
+          currentValue: downloadOptions[key].currentValue,
+        };
+      }
+      if (downloadOptions[key].markedForDeletion) {
+        requestBody[key] = {
+          currentValue: null,
+        };
+      }
+    }
+    // TODO: edit request body
+    this.httpClient
+      .patch('/api/download', requestBody)
+      .subscribe((response) => {
+        console.log(response);
+      });
+    return;
   }
 }

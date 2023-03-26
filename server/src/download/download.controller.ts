@@ -1,30 +1,29 @@
-import { Controller, Get, Param, StreamableFile } from '@nestjs/common';
-import { execSync } from 'child_process';
-import { join } from 'path';
-import { createReadStream } from 'fs';
+import { Body, Controller, Get, Param, Patch } from '@nestjs/common';
+import { DownloadService } from './download.service';
 
 @Controller('download')
 export class DownloadController {
+  constructor(private downloadService: DownloadService) {}
+
   // TODO: once authentication is integrated, only show options owned by user
   @Get('')
   private getDownloadOptions() {
-    // TODO: move this to a service
-    const optionsRaw = execSync(
-      `find ${join(process.cwd(), '../output/')} -type f -not -path '*/.*'`,
-    )
-      .toString()
-      .split('\n');
-    const options = optionsRaw.map((opt) => opt.split('output/')[1]);
-    return options;
+    return this.downloadService.getDownloadOptions();
   }
 
-  // TODO: serve static
   @Get(':option')
   private downloadAudioFile(@Param('option') downloadOption: string) {
     console.log('downloadAudioFile ' + downloadOption);
-    const file = createReadStream(
-      join(process.cwd(), `../output/${downloadOption}`),
-    );
-    return new StreamableFile(file);
+    return this.downloadService.getDownloadStream(downloadOption);
+  }
+
+  @Patch('')
+  private patchDownloadOptions(@Body() requestBody) {
+    const changes: [string, string][] = [];
+    for (const fromFilepath in requestBody) {
+      changes.push([fromFilepath, requestBody[fromFilepath].currentValue]);
+    }
+    this.downloadService.moveOrDeleteDownloadableFiles(changes);
+    return this.downloadService.getDownloadOptions();
   }
 }

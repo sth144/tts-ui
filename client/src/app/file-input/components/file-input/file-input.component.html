@@ -1,0 +1,12 @@
+<div class="flex-column">
+  <h3>Upload Files</h3>
+  <input type="file" multiple (change)="onFilesSelected($event)" />
+  <h5 *ngIf="files.length > 0">Desired file paths (subdirectories allowed)</h5>
+  <div *ngFor="let file of files; index as i">
+    <input [value]="file.name" (change)="onFilePathChanged(i, $event)" />
+  </div>
+
+  <div class="half-width">
+    <button (click)="uploadFiles()">Submit</button>
+  </div>
+</div>

@@ -6,6 +6,8 @@ import { join } from 'path';
 import { IngestModule } from 'ingest/ingest.module';
 import { DownloadService } from './download/download.service';
 import { DownloadModule } from './download/download.module';
+import { SyncTargetModule } from './sync-target/sync-target.module';
+import { SharedModule } from './shared/shared.module';
 
 export const serveStaticImport = ServeStaticModule.forRoot({
   rootPath:
@@ -16,7 +18,7 @@ export const serveStaticImport = ServeStaticModule.forRoot({
 });
 
 @Module({
-  imports: [serveStaticImport, IngestModule, DownloadModule],
+  imports: [serveStaticImport, IngestModule, DownloadModule, SyncTargetModule, SharedModule],
   controllers: [AppController],
   providers: [AppService, DownloadService],
 })
@@ -25,3 +27,4 @@ export class AppModule {}
 // TODO: GraphQL
 // TODO: Redis
 // TODO: Authentication
+// TODO: WebDAV

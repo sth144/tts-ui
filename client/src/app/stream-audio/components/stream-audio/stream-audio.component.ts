@@ -5,7 +5,7 @@ import { StreamAudioService } from '../../stream-audio.service';
 @Component({
   selector: 'app-stream-audio',
   templateUrl: './stream-audio.component.html',
-  styleUrls: ['./stream-audio.component.css'],
+  styleUrls: ['./stream-audio.component.scss'],
 })
 export class StreamAudioComponent implements OnInit {
   constructor(
