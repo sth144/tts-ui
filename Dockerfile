@@ -1,50 +1,51 @@
 # TODO: push base to Docker hub to speed up build
 FROM debian:bullseye-slim AS base
 RUN apt update
-RUN apt install -y npm \
-                    nodejs 
-RUN npm install -g typescript@latest
-
-FROM base as build
-# FROM tts-ui:base AS build
-
-
 RUN ls
-RUN ls ./lib
+# RUN apt install -y npm \
+#                     nodejs 
+# RUN npm install -g typescript@latest
 
-COPY ./lib /usr/src/lib
-WORKDIR /usr/src/lib
-RUN npm install
-RUN tsc -p .
+# FROM base as build
+# # FROM tts-ui:base AS build
 
-FROM build as build_client
-# FROM tts-ui:build as build_client
-# build client
-COPY ./client /usr/src/client
-WORKDIR /usr/src/client
-RUN npm install
-RUN npm run build
-RUN cp -r build /srv/
 
-FROM build as build_server
-# FROM tts-ui:build as build_server
-# build server
-COPY ./server /usr/src/app
-WORKDIR /usr/src/app
-RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
-RUN npm install
-RUN npm run build
+# RUN ls
+# RUN ls ./lib
 
-FROM build AS deploy
-# FROM tts-ui:build AS deploy
-WORKDIR /usr/src/app
-COPY --from=build_client /srv /srv
-COPY --from=build_server /usr/src/app /usr/src/app
-# TODO: define environment variables here and pass them in
-ENV PORT=8000
-ARG NODE_ENV=prod
-ENV NODE_ENV=${NODE_ENV}
-CMD ["npm", "start"]
+# COPY ./lib /usr/src/lib
+# WORKDIR /usr/src/lib
+# RUN npm install
+# RUN tsc -p .
+
+# FROM build as build_client
+# # FROM tts-ui:build as build_client
+# # build client
+# COPY ./client /usr/src/client
+# WORKDIR /usr/src/client
+# RUN npm install
+# RUN npm run build
+# RUN cp -r build /srv/
+
+# FROM build as build_server
+# # FROM tts-ui:build as build_server
+# # build server
+# COPY ./server /usr/src/app
+# WORKDIR /usr/src/app
+# RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
+# RUN npm install
+# RUN npm run build
+
+# FROM build AS deploy
+# # FROM tts-ui:build AS deploy
+# WORKDIR /usr/src/app
+# COPY --from=build_client /srv /srv
+# COPY --from=build_server /usr/src/app /usr/src/app
+# # TODO: define environment variables here and pass them in
+# ENV PORT=8000
+# ARG NODE_ENV=prod
+# ENV NODE_ENV=${NODE_ENV}
+# CMD ["npm", "start"]
 
 FROM deploy as test
 COPY ./test /test
