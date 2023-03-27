@@ -1,6 +1,7 @@
 # TODO: push base to Docker hub to speed up build
 FROM debian:bullseye-slim AS base
 RUN apt update
+RUN pwd
 RUN ls
 # RUN apt install -y npm \
 #                     nodejs 
