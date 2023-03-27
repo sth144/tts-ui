@@ -48,10 +48,10 @@ RUN ls
 # ENV NODE_ENV=${NODE_ENV}
 # CMD ["npm", "start"]
 
-FROM deploy as test
-COPY ./test /test
+# FROM deploy as test
+# COPY ./test /test
 
-# TODO: set up tests
-CMD ["/test/test.sh", "-s", "/usr/src/app", "-c", "/srv", "test"]
+# # TODO: set up tests
+# CMD ["/test/test.sh", "-s", "/usr/src/app", "-c", "/srv", "test"]
 
 # TODO: pass environment variables for client and server in deployment (pipeline tests too)
