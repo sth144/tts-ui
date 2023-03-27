@@ -19,8 +19,10 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          push: true
-          tags: sthinds/tts-ui:latest
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag sthinds/tts-ui:$(date +%s)
+      # - name: Build and push
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     push: true
+      #     tags: sthinds/tts-ui:latest
