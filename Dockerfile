@@ -13,7 +13,7 @@ FROM base as build
 RUN ls
 RUN ls ./lib
 
-COPY ./lib /usr/src/lib
+COPY /github/workspace/lib /usr/src/lib
 # WORKDIR /usr/src/lib
 # RUN npm install
 # RUN tsc -p .
