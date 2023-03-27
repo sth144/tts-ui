@@ -7,6 +7,11 @@ RUN npm install -g typescript@latest
 
 FROM base as build
 # FROM tts-ui:base AS build
+
+
+RUN ls
+RUN ls ./lib
+
 COPY ./lib /usr/src/lib
 WORKDIR /usr/src/lib
 RUN npm install
