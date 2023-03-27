@@ -3,18 +3,17 @@ FROM debian:bullseye-slim AS base
 RUN apt update
 RUN pwd
 RUN ls
-# RUN apt install -y npm \
-#                     nodejs 
-# RUN npm install -g typescript@latest
+RUN apt install -y npm \
+                    nodejs 
+RUN npm install -g typescript@latest
 
-# FROM base as build
-# # FROM tts-ui:base AS build
+FROM base as build
+# FROM tts-ui:base AS build
 
+RUN ls
+RUN ls ./lib
 
-# RUN ls
-# RUN ls ./lib
-
-# COPY ./lib /usr/src/lib
+COPY ./lib /usr/src/lib
 # WORKDIR /usr/src/lib
 # RUN npm install
 # RUN tsc -p .
