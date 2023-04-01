@@ -11,10 +11,10 @@ FROM base as build
 # FROM tts-ui:base AS build
 
 RUN ls
-RUN ls ./lib
-RUN mkdir -p /usr/src
+RUN COPY . .
+#RUN mkdir -p /usr/src
 
-COPY lib /usr/src/lib
+#COPY lib /usr/src/lib
 # WORKDIR /usr/src/lib
 # RUN npm install
 # RUN tsc -p .
