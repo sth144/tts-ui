@@ -34,6 +34,6 @@ jobs:
           file: ./Dockerfile
           target: prod
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.prep.outputs.tags }}
+          tags: sthinds/tts-ui:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
