@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y npm curl
 
 # nvm environment variables
-ENV NVM_DIR "$HOME/.nvm"
+ENV NVM_DIR "/.nvm"
 ENV NODE_VERSION 19.8.1
 
 # install nvm
@@ -13,6 +13,9 @@ ENV NODE_VERSION 19.8.1
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 
 RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+RUN echo ${NVM_DIR}
+RUN ls ${NVM_DIR}
+RUN source ${NVM_DIR}/nvm.sh
 # install node and npm
 RUN nvm install $NODE_VERSION 
 RUN nvm alias default $NODE_VERSION 
