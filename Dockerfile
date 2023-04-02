@@ -54,11 +54,11 @@ RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
 RUN npm install
 RUN npm run build
 
-FROM build AS deploy
+# FROM build AS deploy
 # # FROM tts-ui:build AS deploy
 WORKDIR /usr/src/server
-COPY --from=build_client /srv /srv
-COPY --from=build_server /usr/src/app /usr/src/app
+# COPY --from=build_client /srv /srv
+# COPY --from=build_server /usr/src/app /usr/src/app
 # TODO: define environment variables here and pass them in
 ENV PORT=8000
 ARG NODE_ENV=prod
