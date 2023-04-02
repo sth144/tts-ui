@@ -8,8 +8,8 @@ RUN npm install -g typescript@latest
 FROM base as build
 # FROM tts-ui:base AS build
 
-COPY /github/workspace/lib /usr/src/lib
-#RUN mkdir -p /usr/src
+RUN mkdir -p /usr/src
+COPY . /usr/src/
 
 #COPY lib /usr/src/lib
 # WORKDIR /usr/src/lib
