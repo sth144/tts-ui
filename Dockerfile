@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get install -y npm curl
 
 # nvm environment variables
-ENV NVM_DIR "/.nvm"
+ENV NVM_DIR "$HOME/.nvm"
 ENV NODE_VERSION 19.8.1
 
 # install nvm
