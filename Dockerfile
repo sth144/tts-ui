@@ -1,19 +1,19 @@
 # TODO: push base to Docker hub to speed up build
-FROM debian:buster-slim AS base
+FROM debian:bullseye-slim AS base
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update
 RUN apt-get install -y npm curl
 
 # nvm environment variables
-ENV NVM_DIR /usr/local/nvm
+ENV NVM_DIR "$HOME/.nvm"
 ENV NODE_VERSION 19.8.1
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
 RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
 
+RUN [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 # install node and npm
-RUN source $NVM_DIR/nvm.sh 
 RUN nvm install $NODE_VERSION 
 RUN nvm alias default $NODE_VERSION 
 RUN nvm use default
