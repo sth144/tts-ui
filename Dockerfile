@@ -11,32 +11,29 @@ FROM base as build
 RUN mkdir -p /usr/src
 COPY . /usr/src/
 
-#COPY lib /usr/src/lib
-# WORKDIR /usr/src/lib
-# RUN npm install
-# RUN tsc -p .
+WORKDIR /usr/src/lib
+RUN npm install
+RUN tsc -p .
 
-# FROM build as build_client
-# # FROM tts-ui:build as build_client
-# # build client
-# COPY ./client /usr/src/client
-# WORKDIR /usr/src/client
+FROM build as build_client
+# FROM tts-ui:build as build_client
+# build client
+WORKDIR /usr/src/client
 # RUN npm install
-# RUN npm run build
-# RUN cp -r build /srv/
+RUN npm run build
+RUN cp -r build /srv/
 
-# FROM build as build_server
+FROM build as build_server
 # # FROM tts-ui:build as build_server
-# # build server
-# COPY ./server /usr/src/app
-# WORKDIR /usr/src/app
-# RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
-# RUN npm install
-# RUN npm run build
+# build server
+WORKDIR /usr/src/server
+RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
+RUN npm install
+RUN npm run build
 
-# FROM build AS deploy
+FROM build AS deploy
 # # FROM tts-ui:build AS deploy
-# WORKDIR /usr/src/app
+WORKDIR /usr/src/server
 # COPY --from=build_client /srv /srv
 # COPY --from=build_server /usr/src/app /usr/src/app
 # # TODO: define environment variables here and pass them in
