@@ -5,8 +5,9 @@ RUN apt-get update
 RUN apt-get install -y npm curl
 
 # nvm environment variables
-ENV NVM_DIR "/usr/local/.nvm"
+ENV NVM_DIR "/bin/.nvm"
 ENV NODE_VERSION 19.8.1
+RUN mkdir "/bin/.nvm"
 
 # install nvm
 # https://github.com/creationix/nvm#install-script
