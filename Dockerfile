@@ -1,8 +1,8 @@
 # TODO: push base to Docker hub to speed up build
 FROM debian:buster-slim AS base
 RUN apt-get update
-RUN apt-get install -y npm \
-                    nodejs
+RUN curl -sL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt install -y nodejs npm
 RUN npm install -g typescript@latest
 
 FROM base as build
