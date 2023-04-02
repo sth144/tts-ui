@@ -20,7 +20,7 @@ FROM build as build_client
 # FROM tts-ui:build as build_client
 # build client
 WORKDIR /usr/src/client
-# RUN npm install
+RUN npm install
 RUN npm run build
 RUN cp -r build /srv/
 
