@@ -2,9 +2,25 @@
 FROM debian:buster-slim AS base
 RUN apt-get update
 RUN apt-get install -y npm curl
-RUN curl -O https://nodejs.org/download/release/v19.8.1/node-v19.8.1-linux-x64.tar.gz
-RUN tar xzf node-v19.8.1-linux-x64.tar.gz
-ENV PATH=”/node-v19.8.1-linux-x64/bin:${PATH}”
+
+# nvm environment variables
+ENV NVM_DIR /usr/local/nvm
+ENV NODE_VERSION 19.8.1
+
+# install nvm
+# https://github.com/creationix/nvm#install-script
+RUN curl --silent -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.2/install.sh | bash
+
+# install node and npm
+RUN source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
+
+# add node and npm to path so the commands are available
+ENV NODE_PATH $NVM_DIR/v$NODE_VERSION/lib/node_modules
+ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+
 RUN node -v
 
 RUN npm install -g typescript@latest
