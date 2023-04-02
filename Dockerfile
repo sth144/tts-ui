@@ -2,7 +2,7 @@
 FROM debian:buster-slim AS base
 RUN apt-get update
 RUN apt-get install -y npm \
-                    nodejs 
+                    nodejs
 RUN npm install -g typescript@latest
 
 FROM base as build
@@ -11,9 +11,10 @@ FROM base as build
 RUN mkdir -p /usr/src
 COPY . /usr/src/
 
-WORKDIR /usr/src/lib
-RUN npm install
-RUN tsc -p .
+# TODO: get this working
+# WORKDIR /usr/src/lib
+# RUN npm install
+# RUN tsc -p .
 
 FROM build as build_client
 # FROM tts-ui:build as build_client
@@ -34,14 +35,15 @@ RUN npm run build
 FROM build AS deploy
 # # FROM tts-ui:build AS deploy
 WORKDIR /usr/src/server
-# COPY --from=build_client /srv /srv
-# COPY --from=build_server /usr/src/app /usr/src/app
-# # TODO: define environment variables here and pass them in
-# ENV PORT=8000
-# ARG NODE_ENV=prod
-# ENV NODE_ENV=${NODE_ENV}
-# CMD ["npm", "start"]
+COPY --from=build_client /srv /srv
+COPY --from=build_server /usr/src/app /usr/src/app
+# TODO: define environment variables here and pass them in
+ENV PORT=8000
+ARG NODE_ENV=prod
+ENV NODE_ENV=${NODE_ENV}
+CMD ["npm", "start"]
 
+# TODO get tests passing
 # FROM deploy as test
 # COPY ./test /test
 
