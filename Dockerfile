@@ -1,8 +1,10 @@
 # TODO: push base to Docker hub to speed up build
 FROM debian:buster-slim AS base
 RUN apt-get update
-RUN pwd
-RUN ls
+RUN apt-get install curl python-software-properties 
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | sudo bash -
+RUN apt-get update
 RUN apt-get install -y npm \
                     nodejs 
 RUN npm install -g typescript@latest
@@ -11,7 +13,7 @@ FROM base as build
 # FROM tts-ui:base AS build
 
 RUN ls
-RUN COPY . .
+COPY . .
 #RUN mkdir -p /usr/src
 
 #COPY lib /usr/src/lib
