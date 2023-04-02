@@ -28,6 +28,7 @@ FROM build as build_server
 # # FROM tts-ui:build as build_server
 # build server
 WORKDIR /usr/src/server
+RUN node -v
 RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
 RUN npm install
 RUN npm run build
