@@ -1,5 +1,6 @@
 # TODO: push base to Docker hub to speed up build
 FROM debian:buster-slim AS base
+RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update
 RUN apt-get install -y npm curl
 
