@@ -8,8 +8,7 @@ RUN npm install -g typescript@latest
 FROM base as build
 # FROM tts-ui:base AS build
 
-RUN ls
-COPY . .
+COPY lib /usr/src/lib
 #RUN mkdir -p /usr/src
 
 #COPY lib /usr/src/lib
