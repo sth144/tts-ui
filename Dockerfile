@@ -1,5 +1,5 @@
 # TODO: push base to Docker hub to speed up build
-FROM debian:bullseye-slim AS base
+FROM debian:buster-slim AS base
 RUN apt update
 RUN pwd
 RUN ls
