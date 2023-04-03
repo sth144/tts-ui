@@ -39,7 +39,7 @@ spec:
   ports:
     # TODO: is this right?
     - port: 8080
-      targetPort: 80
+      targetPort: 8000
       name: tts-ui
   externalIPs:
     - 192.168.1.240
