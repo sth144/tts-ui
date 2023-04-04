@@ -40,14 +40,14 @@ FROM build as build_client
 WORKDIR /usr/src/client
 RUN npm install
 RUN npm run build
-RUN cp -r build /srv/
+RUN cp -r dist /srv/
 
 FROM build as build_server
 # # FROM tts-ui:build as build_server
 # build server
 WORKDIR /usr/src/server
 RUN node -v
-RUN echo "CLIENT_BUNDLE_DIR=/srv/build" >> .env
+RUN echo "CLIENT_BUNDLE_DIR=/srv/dist" >> .env
 RUN npm install
 RUN npm run build
 
@@ -58,7 +58,7 @@ RUN npm run build
 # COPY --from=build_server /usr/src/app /usr/src/app
 # TODO: define environment variables here and pass them in
 ENV PORT=3550
-ENV CLIENT_BUNDLE_DIR=/srv/build
+ENV CLIENT_BUNDLE_DIR=/srv/dist
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}
 CMD ["node", "dist/src/main.js"]
