@@ -34,7 +34,7 @@ COPY . /usr/src/
 # RUN npm install
 # RUN tsc -p .
 
-FROM build as build_client
+# FROM build as build_client
 # FROM tts-ui:build as build_client
 # build client
 WORKDIR /usr/src/client
@@ -43,7 +43,7 @@ RUN npm run build
 RUN cp -r dist /srv/
 RUN ls /srv
 
-FROM build as build_server
+# FROM build as build_server
 # # FROM tts-ui:build as build_server
 # build server
 WORKDIR /usr/src/server
