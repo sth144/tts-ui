@@ -60,7 +60,7 @@ RUN npm run build
 ENV PORT=8000
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}
-CMD ["npm", "start"]
+CMD ["node", "dist/src/main.js"]
 
 # TODO get tests passing
 # FROM deploy as test
