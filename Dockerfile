@@ -7,7 +7,7 @@ RUN apt-get install -y npm curl
 # nvm environment variables
 ENV NVM_DIR /usr/local/nvm
 RUN mkdir $NVM_DIR
-ENV NODE_VERSION 19.8.1
+ENV NODE_VERSION 16
 ENV NODE_PATH $NVM_DIR/$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
