@@ -57,7 +57,7 @@ RUN npm run build
 # COPY --from=build_client /srv /srv
 # COPY --from=build_server /usr/src/app /usr/src/app
 # TODO: define environment variables here and pass them in
-ENV PORT=8000
+ENV PORT=3550
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}
 CMD ["node", "dist/src/main.js"]
