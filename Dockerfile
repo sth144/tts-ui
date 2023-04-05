@@ -41,7 +41,6 @@ WORKDIR /usr/src/client
 RUN npm install
 RUN npm run build
 RUN cp -r dist /srv/
-RUN ls /srv
 
 # FROM build as build_server
 # # FROM tts-ui:build as build_server
@@ -51,7 +50,7 @@ RUN node -v
 RUN echo "CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client" >> .env
 RUN npm install
 RUN npm run build
-RUN ls /srv/dist
+RUN ls /usr/src
 
 # FROM build AS deploy
 # # FROM tts-ui:build AS deploy
