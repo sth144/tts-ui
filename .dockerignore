@@ -1,0 +1,12 @@
+node_modules
+.env
+client/.env
+client/node_modules
+client/build
+server/.env
+server/node_modules
+server/.dist
+lib/.env
+lib/node_modules
+lib/.dist
+.git

@@ -29,10 +29,9 @@ FROM base as build
 RUN mkdir -p /usr/src
 COPY . /usr/src/
 
-# TODO: get this working
-# WORKDIR /usr/src/lib
-# RUN npm install
-# RUN tsc -p .
+WORKDIR /usr/src/lib
+RUN npm install
+RUN tsc -p .
 
 # FROM build as build_client
 # FROM tts-ui:build as build_client
