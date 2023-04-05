@@ -51,6 +51,7 @@ RUN echo "CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client" >> .env
 RUN npm install
 RUN npm run build
 RUN ls /usr/src
+RUN mkdir -p /usr/src/output
 
 # FROM build AS deploy
 # # FROM tts-ui:build AS deploy
