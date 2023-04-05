@@ -18,7 +18,13 @@ export const serveStaticImport = ServeStaticModule.forRoot({
 });
 
 @Module({
-  imports: [serveStaticImport, IngestModule, DownloadModule, SyncTargetModule, SharedModule],
+  imports: [
+    serveStaticImport,
+    IngestModule,
+    DownloadModule,
+    SyncTargetModule,
+    SharedModule,
+  ],
   controllers: [AppController],
   providers: [AppService, DownloadService],
 })

@@ -58,7 +58,7 @@ RUN mkdir -p /usr/src/output
 # COPY --from=build_client /srv /srv
 # COPY --from=build_server /usr/src/app /usr/src/app
 # TODO: define environment variables here and pass them in
-ENV PORT=80
+ENV PORT=3550
 ENV CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}

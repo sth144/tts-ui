@@ -27,14 +27,14 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           ports:
-            - containerPort: 80
+            - containerPort: 3550
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: tts-ui
-  # labels:
-  #   app: tts-ui
+  labels:
+    app: tts-ui
 spec:
   type: NodePort
   selector:
@@ -43,7 +43,7 @@ spec:
   ports:
     # TODO: is this right?
     - port: 80
-      targetPort: 80
+      targetPort: 3550 # containerPort
       name: tts-ui
   # TODO: figure out if this is needed
   externalIPs:
@@ -57,13 +57,13 @@ metadata:
   name: tts-ui-ingress
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
-    kubernetes.io/ingress.class: "nginx"
+    # kubernetes.io/ingress.class: "nginx"
 spec:
-  defaultBackend:
-    service:
-      name: tts-ui
-      port:
-        number: 80
+  # defaultBackend:
+  #   service:
+  #     name: tts-ui
+  #     port:
+  #       number: 80
   rules:
     - host: tts-ui
       http:
@@ -74,4 +74,6 @@ spec:
               service:
                 name: tts-ui
                 port:
-                  number: 80
+                  number: 3550
+
+  ingressClassName: nginx
