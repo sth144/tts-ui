@@ -28,7 +28,8 @@
     "gtts": "^0.2.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "webdav-server": "^2.6.2"
+    "webdav-server": "^2.6.2",
+    "tts-ui-lib": "file:../lib/"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

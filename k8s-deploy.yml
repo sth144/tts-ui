@@ -47,7 +47,7 @@ spec:
       name: tts-ui
   # TODO: figure out if this is needed
   externalIPs:
-    - 192.168.1.240
+    - 192.168.1.241
 
 ---
 apiVersion: networking.k8s.io/v1
@@ -59,13 +59,14 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
     # kubernetes.io/ingress.class: "nginx"
 spec:
-  # defaultBackend:
-  #   service:
-  #     name: tts-ui
-  #     port:
-  #       number: 80
+  # TODO: HTTPS
+  defaultBackend:
+    service:
+      name: tts-ui
+      port:
+        number: 80
   rules:
-    - host: tts-ui
+    - host: tts-ui.pc1
       http:
         paths:
           - path: /

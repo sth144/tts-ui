@@ -32,7 +32,9 @@ export class DownloadAudioComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.downloadOptions$.subscribe((options) => {
-      this.populateDownloadOptionsMeta(options);
+      if (options) {
+        this.populateDownloadOptionsMeta(options);
+      }
     });
 
     this.populateDownloadOptionsMeta(
@@ -97,6 +99,7 @@ export class DownloadAudioComponent implements OnInit {
   }
 
   private populateDownloadOptionsMeta(downloadOptions: string[]) {
+    console.log(downloadOptions);
     this.downloadOptionsMeta = {};
     for (const option of downloadOptions) {
       if (option && option !== 'null') {

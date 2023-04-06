@@ -3,6 +3,7 @@ import { Action, Selector, State, StateContext, StateToken } from '@ngxs/store';
 // TODO: use a key instaead of just string
 const ROOT_STATE_TOKEN = new StateToken<RootStateModel>('root');
 
+// TODO: replace with prototype from lib
 export interface RootStateModel {
   selectedOption: string | null;
   downloadOptions: string[] | null;

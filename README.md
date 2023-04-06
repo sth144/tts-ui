@@ -12,8 +12,7 @@ A text-to-speech web UI and backend for converting text to dictated MP3 files. T
 
 ## TODO:
 
-- text file upload
-- allow editing of paths for staged files
+- auth (https://medium.com/@nielsmeima/auth-in-nest-js-and-angular-463525b6e071)
 - WebDAV for CRUD on server & remote
 - UI progress bar for uploads
 - message broker and task queue for long running tasks

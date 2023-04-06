@@ -62,7 +62,7 @@ ENV PORT=3550
 ENV CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}
-CMD ["node", "dist/src/main.js"]
+CMD ["node", "dist/main.js"]
 
 # TODO get tests passing
 # FROM deploy as test

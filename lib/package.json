@@ -2,9 +2,15 @@
   "name": "lib",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npm install && tsc -p .",
+    "eslint": "eslint \"src/**/*.ts\"",
+    "eslint-fix": "eslint \"src/**/*.ts\" --fix",
+    "test": "echo 'TODO'",
+    "clean": "rm -rf dist && rm -rf node_modules",
+    "prepare": "tsc"
   },
   "author": "",
   "license": "ISC",
