@@ -1,12 +1,28 @@
 <div class="flex-column">
   <h3>Upload Files</h3>
-  <input type="file" multiple (change)="onFilesSelected($event)" />
+
+  <button type="button" mat-raised-button (click)="fileInput.click()">
+    Choose File
+  </button>
+  <input
+    hidden
+    multiple
+    (change)="onFilesSelected($event)"
+    #fileInput
+    type="file"
+    id="file"
+  />
   <h5 *ngIf="files.length > 0">Desired file paths (subdirectories allowed)</h5>
   <div *ngFor="let file of files; index as i">
-    <input [value]="file.name" (change)="onFilePathChanged(i, $event)" />
+    <input
+      type="text"
+      matInput
+      [value]="file.name"
+      (change)="onFilePathChanged(i, $event)"
+    />
   </div>
 
   <div class="half-width">
-    <button (click)="uploadFiles()">Submit</button>
+    <button mat-raised-button (click)="uploadFiles()">Submit</button>
   </div>
 </div>

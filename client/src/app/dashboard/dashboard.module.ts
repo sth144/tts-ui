@@ -7,11 +7,13 @@ import { FileInputModule } from '../file-input/file-input.module';
 import { DownloadAudioModule } from '../download-audio/download-audio.module';
 import { StreamAudioModule } from '../stream-audio/stream-audio.module';
 import { SyncTargetModule } from '../sync-target/sync-target.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [DashboardComponent],
   imports: [
     CommonModule,
+    SharedModule,
     TextInputModule,
     FileInputModule,
     DownloadAudioModule,

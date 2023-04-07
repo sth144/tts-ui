@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-// TODO: shared module
+
 import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 import { StateService } from './state/state.service';
 import { NgxsModule } from '@ngxs/store';
 import { RootState } from './state/root.state';
@@ -14,6 +16,8 @@ const sharedImports = [
   HttpClientModule,
   FormsModule,
   MatIconModule,
+  MatButtonModule,
+  MatInputModule,
   NgxsModule.forRoot([RootState]),
 ];
 const sharedProviders: any[] = [StateService];

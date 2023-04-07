@@ -14,6 +14,6 @@ export class StreamAudioService {
   public setFileSource(fileSourceName: string): void {
     this.fileSourceURL = `${
       window.location.href
-    }/api/download/${encodeURIComponent(fileSourceName)}`;
+    }api/download/${encodeURIComponent(fileSourceName)}`;
   }
 }

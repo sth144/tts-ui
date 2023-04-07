@@ -2,14 +2,15 @@
   <div><h4>Sync Target</h4></div>
   <div>
     <input
+      matInput
       [value]="syncTargetURL$ | async"
       (change)="stageSyncTargetLocalURLLocal($event)"
     />
   </div>
   <div>
-    <button (click)="submitSyncTargetURL()">Submit</button>
+    <button mat-raised-button (click)="submitSyncTargetURL()">Submit</button>
   </div>
-  <div><button (click)="triggerSyncJob()">Sync</button></div>
+  <div><button mat-raised-button (click)="triggerSyncJob()">Sync</button></div>
 </div>
 
 {{ syncTargetURL$ | async }}

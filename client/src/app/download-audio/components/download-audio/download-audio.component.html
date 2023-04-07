@@ -1,6 +1,6 @@
 <a *ngIf="mode == 'display'" (click)="makeEditable()">Edit Paths</a>
 <a *ngIf="mode == 'editable'" (click)="cancelEdits()">cancel</a>
-<button *ngIf="mode == 'editable'" (click)="submitEdits()">
+<button mat-raised-button *ngIf="mode == 'editable'" (click)="submitEdits()">
   Submit Changes
 </button>
 
@@ -30,6 +30,7 @@
         "
       >
         <input
+          matInput
           [value]="option.value.currentValue"
           (change)="optionEdited(option.key, $event)"
         />

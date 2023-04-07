@@ -1,10 +1,10 @@
 <div class="flex-column">
   <h3>Input Text</h3>
   <h4>Title</h4>
-  <input type="text" [(ngModel)]="title" />
+  <input matInput type="text" [(ngModel)]="title" />
   <h4>Body</h4>
-  <input type="textarea" [(ngModel)]="body" />
+  <input matInput type="textarea" [(ngModel)]="body" />
   <div class="half-width">
-    <button (click)="submitTextInput()">Submit</button>
+    <button mat-raised-button (click)="submitTextInput()">Submit</button>
   </div>
 </div>
