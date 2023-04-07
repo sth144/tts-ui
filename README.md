@@ -6,9 +6,25 @@ A text-to-speech web UI and backend for converting text to dictated MP3 files. T
 
 ## Build
 
+### Server
+
+`[server]$ npm install`
+`[server]$ nest build`
+
+### Client
+
+`[client]$ npm install`
+`[client]$ ng build`
+
 ## Run
 
+`[server]$ nest start`
+
 ## Deploy
+
+- Build Docker image
+- Pull Docker image into desired environment
+- Run
 
 ## Usage
 
