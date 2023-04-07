@@ -1,5 +1,7 @@
 # tts-ui
 
+[![Docker Image CI](https://github.com/sth144/tts-ui/actions/workflows/ci-main.yml/badge.svg)](https://github.com/sth144/tts-ui/actions/workflows/ci-main.yml)
+
 A text-to-speech web UI and backend for converting text to dictated MP3 files. The frontend uses Angular, and the backend runs NestJS (Node.JS).
 
 ## Build
