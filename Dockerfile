@@ -47,6 +47,8 @@ RUN cp -r dist /srv/
 WORKDIR /usr/src/server
 RUN node -v
 RUN echo "CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client" >> .env
+RUN mkdir -p /etc/tts-ui
+RUN echo "SERVER_CONFIG_PATH=/etc/tts-ui" >> .env
 RUN npm install
 RUN npm run build
 RUN ls /usr/src
@@ -60,6 +62,7 @@ RUN mkdir -p /usr/src/output
 # TODO: define environment variables here and pass them in
 ENV PORT=3550
 ENV CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client
+ENV SERVER_CONFIG_PATH=/etc/tts-ui
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}
 CMD ["node", "dist/main.js"]

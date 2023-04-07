@@ -32,6 +32,11 @@ export class ServerStateService {
         [action.type]: action.payload,
       }),
     );
+
+    writeFileSync(
+      this.serverConfigPath,
+      JSON.stringify(this.serverStateConfig$.value, null, 2),
+    );
   }
 
   public actionFor(
