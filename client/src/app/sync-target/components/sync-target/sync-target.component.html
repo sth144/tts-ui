@@ -6,22 +6,23 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div class="flex-column">
-      <div class="whole-width">
-        <input
-          matInput
-          [value]="syncTargetURL$ | async"
-          (change)="stageSyncTargetLocalURLLocal($event)"
-        />
-      </div>
       <div class="flex-row whole-width justify-evenly">
         <div>
-          <button mat-raised-button (click)="submitSyncTargetURL()">
-            Submit
-          </button>
+          <input
+            matInput
+            [value]="syncTargetURL$ | async"
+            (change)="stageSyncTargetLocalURLLocal($event)"
+          />
         </div>
         <div>
-          <button mat-raised-button (click)="triggerSyncJob()">Sync</button>
+          <button mat-raised-button (click)="submitSyncTargetURL()">
+            Set Sync Target
+          </button>
         </div>
+      </div>
+      <div style="height: 36px"></div>
+      <div class="flex-row whole-width justify-evenly">
+        <button mat-raised-button (click)="triggerSyncJob()">Sync</button>
       </div>
     </div>
   </mat-expansion-panel>

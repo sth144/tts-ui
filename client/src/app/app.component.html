@@ -2,16 +2,38 @@
   class="flex-column whole-height whole-width justify-between"
   id="app-container"
 >
-  <div
-    class="whole-width quarter-height flex-row justify-center align-center"
-    id="header"
-  >
-    <div class="quarter-height">
-      <h1>Text-to-Speech UI</h1>
+  <div class="whole-width flex-row justify-center align-center" id="header">
+    <div class="quarter-height flex-row">
+      <div><h1>Text-to-Speech UI</h1></div>
+      <div>
+        <img height="30px" widht="30px" src="assets/favicon.ico" />
+      </div>
     </div>
   </div>
   <div id="main-panel">
     <router-outlet></router-outlet>
   </div>
-  <div id="footer"></div>
+  <div
+    id="footer"
+    class="flex-column whole-width align-center text-center justify-evenly"
+  >
+    <p>
+      I wrote this site in TypeScript, using an Angular frontend and a NestJS
+      backend,
+      <br />
+      I deployed it as a Docker container on a Kubernetes cluster I created from
+      three Raspberry Pis.
+    </p>
+    <p>Email: sthinds144@gmail.com</p>
+    <div class="flex-row">
+      <div>
+        <a href="https://github.com/sth144"> GitHub </a>
+      </div>
+      <div>
+        <a href="https://www.linkedin.com/in/sean-hinds-67259ab2/">
+          Linkedin
+        </a>
+      </div>
+    </div>
+  </div>
 </div>

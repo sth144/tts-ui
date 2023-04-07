@@ -24,7 +24,7 @@ export class StreamAudioComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedOption$.subscribe((opt) => {
-      if (opt === null || opt.endsWith('/api/download')) {
+      if (opt === null || opt.endsWith('download')) {
         this.displayFileURL = '';
       } else {
         this.displayFileURL = this.streamAudioService.FileSourceURL;

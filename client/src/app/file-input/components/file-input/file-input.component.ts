@@ -36,8 +36,8 @@ export class FileInputComponent implements OnInit {
     );
   }
 
-  public deleteStagedFile(index: number): void {
-    this.files = this.files.splice(index, 1);
+  public deleteStagedFile(fileToDelete: any): void {
+    this.files = this.files.filter((file) => file.name !== fileToDelete.name);
   }
 
   public uploadFiles() {

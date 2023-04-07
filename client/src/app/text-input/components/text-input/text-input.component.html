@@ -2,13 +2,20 @@
   <mat-expansion-panel-header>
     <mat-panel-title>Input Manually </mat-panel-title>
   </mat-expansion-panel-header>
-  <div class="flex-column">
-    <h4>Title</h4>
-    <input matInput type="text" [(ngModel)]="title" />
-    <h4>Body</h4>
-    <input matInput type="textarea" [(ngModel)]="body" />
-    <div class="half-width">
-      <button mat-raised-button (click)="submitTextInput()">Submit</button>
+  <div class="flex-column whole-height justify-evenly text-left">
+    <div>
+      <h4>Title</h4>
+    </div>
+    <div><input matInput type="text" [(ngModel)]="title" /></div>
+    <div><h4>Body</h4></div>
+    <div class="whole-width">
+      <input class="whole-width" matInput type="textarea" [(ngModel)]="body" />
+    </div>
+    <div style="height: 16px"></div>
+    <div class="whole-width flex-row justify-center">
+      <div>
+        <button mat-raised-button (click)="submitTextInput()">Submit</button>
+      </div>
     </div>
   </div>
 </mat-expansion-panel>
