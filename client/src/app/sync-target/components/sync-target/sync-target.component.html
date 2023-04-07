@@ -1,16 +1,23 @@
-<div class="flex-column">
-  <div><h4>Sync Target</h4></div>
-  <div>
-    <input
-      matInput
-      [value]="syncTargetURL$ | async"
-      (change)="stageSyncTargetLocalURLLocal($event)"
-    />
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Sync Target </mat-panel-title>
+    <mat-panel-description>
+      {{ syncTargetURL$ | async }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <div class="flex-column">
+    <div>
+      <input
+        matInput
+        [value]="syncTargetURL$ | async"
+        (change)="stageSyncTargetLocalURLLocal($event)"
+      />
+    </div>
+    <div>
+      <button mat-raised-button (click)="submitSyncTargetURL()">Submit</button>
+    </div>
+    <div>
+      <button mat-raised-button (click)="triggerSyncJob()">Sync</button>
+    </div>
   </div>
-  <div>
-    <button mat-raised-button (click)="submitSyncTargetURL()">Submit</button>
-  </div>
-  <div><button mat-raised-button (click)="triggerSyncJob()">Sync</button></div>
-</div>
-
-{{ syncTargetURL$ | async }}
+</mat-expansion-panel>

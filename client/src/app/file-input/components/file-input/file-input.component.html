@@ -1,28 +1,36 @@
-<div class="flex-column">
-  <h3>Upload Files</h3>
-
-  <button type="button" mat-raised-button (click)="fileInput.click()">
-    Choose File
-  </button>
-  <input
-    hidden
-    multiple
-    (change)="onFilesSelected($event)"
-    #fileInput
-    type="file"
-    id="file"
-  />
-  <h5 *ngIf="files.length > 0">Desired file paths (subdirectories allowed)</h5>
-  <div *ngFor="let file of files; index as i">
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Upload Files </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="flex-column">
+    <button type="button" mat-raised-button (click)="fileInput.click()">
+      Choose File
+    </button>
     <input
-      type="text"
-      matInput
-      [value]="file.name"
-      (change)="onFilePathChanged(i, $event)"
+      hidden
+      multiple
+      (change)="onFilesSelected($event)"
+      #fileInput
+      type="file"
+      id="file"
     />
-  </div>
+    <h5 *ngIf="files.length > 0">
+      Desired file paths (subdirectories allowed)
+    </h5>
+    <div *ngFor="let file of files; index as i">
+      <input
+        type="text"
+        matInput
+        [value]="file.name"
+        (change)="onFilePathChanged(i, $event)"
+      />
+      <a (click)="deleteStagedFile(i)"
+        ><mat-icon aria-label="Delete">delete_forever</mat-icon></a
+      >
+    </div>
 
-  <div class="half-width">
-    <button mat-raised-button (click)="uploadFiles()">Submit</button>
+    <div class="half-width">
+      <button mat-raised-button (click)="uploadFiles()">Submit</button>
+    </div>
   </div>
-</div>
+</mat-expansion-panel>

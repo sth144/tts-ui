@@ -1,8 +1,18 @@
 <a *ngIf="mode == 'display'" (click)="makeEditable()">Edit Paths</a>
-<a *ngIf="mode == 'editable'" (click)="cancelEdits()">cancel</a>
-<button mat-raised-button *ngIf="mode == 'editable'" (click)="submitEdits()">
-  Submit Changes
-</button>
+<div class="flex-row space-evenly">
+  <div class="third-width">
+    <a *ngIf="mode == 'editable'" (click)="cancelEdits()">cancel</a>
+  </div>
+  <div class="third-width">
+    <button
+      mat-raised-button
+      *ngIf="mode == 'editable'"
+      (click)="submitEdits()"
+    >
+      Submit Changes
+    </button>
+  </div>
+</div>
 
 <!-- <div *ngFor="let item of downloadOptionsMeta | keyvalue">
   {{ item.value | json }}

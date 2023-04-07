@@ -1,10 +1,14 @@
-<div class="flex-column">
-  <h3>Input Text</h3>
-  <h4>Title</h4>
-  <input matInput type="text" [(ngModel)]="title" />
-  <h4>Body</h4>
-  <input matInput type="textarea" [(ngModel)]="body" />
-  <div class="half-width">
-    <button mat-raised-button (click)="submitTextInput()">Submit</button>
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Input Manually </mat-panel-title>
+  </mat-expansion-panel-header>
+  <div class="flex-column">
+    <h4>Title</h4>
+    <input matInput type="text" [(ngModel)]="title" />
+    <h4>Body</h4>
+    <input matInput type="textarea" [(ngModel)]="body" />
+    <div class="half-width">
+      <button mat-raised-button (click)="submitTextInput()">Submit</button>
+    </div>
   </div>
-</div>
+</mat-expansion-panel>

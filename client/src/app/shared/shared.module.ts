@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 import { StateService } from './state/state.service';
 import { NgxsModule } from '@ngxs/store';
 import { RootState } from './state/root.state';
@@ -18,6 +20,7 @@ const sharedImports = [
   MatIconModule,
   MatButtonModule,
   MatInputModule,
+  MatExpansionModule,
   NgxsModule.forRoot([RootState]),
 ];
 const sharedProviders: any[] = [StateService];

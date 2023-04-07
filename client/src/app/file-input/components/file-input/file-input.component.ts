@@ -36,6 +36,10 @@ export class FileInputComponent implements OnInit {
     );
   }
 
+  public deleteStagedFile(index: number): void {
+    this.files = this.files.splice(index, 1);
+  }
+
   public uploadFiles() {
     console.log(this.files);
     this.fileInputService.uploadFilesForConversion(this.files);
