@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { IngestModule } from 'ingest/ingest.module';
+import { IngestModule } from './ingest/ingest.module';
 import { DownloadService } from './download/download.service';
 import { DownloadModule } from './download/download.module';
 import { SyncTargetModule } from './sync-target/sync-target.module';

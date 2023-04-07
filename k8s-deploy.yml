@@ -44,37 +44,51 @@ spec:
     # TODO: is this right?
     - port: 80
       targetPort: 3550 # containerPort
+      nodePort: 31646
       name: tts-ui
   # TODO: figure out if this is needed
   externalIPs:
+    - 192.168.1.240
     - 192.168.1.241
-
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  namespace: default
-  name: tts-ui-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-    # kubernetes.io/ingress.class: "nginx"
-spec:
-  # TODO: HTTPS
-  defaultBackend:
-    service:
-      name: tts-ui
-      port:
-        number: 80
-  rules:
-    - host: tts-ui.pc1
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: tts-ui
-                port:
-                  number: 3550
-
-  ingressClassName: nginx
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   namespace: default
+#   name: tts-ui-ingress
+#   annotations:
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+#     nginx.ingress.kubernetes.io/rewrite-target: /$2
+#     kubernetes.io/ingress.class: "nginx"
+# spec:
+#   # TODO: HTTPS
+#   defaultBackend:
+#     service:
+#       name: tts-ui
+#       port:
+#         number: 80
+#   rules:
+#     - host: tts-ui.pc1
+#       http:
+#         paths:
+#           # - path: /
+#           #   pathType: Prefix
+#           #   backend:
+#           #     service:
+#           #       name: tts-ui
+#           #       port:
+#           #         number: 3550
+#           - path: /(.*)
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: tts-ui
+#                 port:
+#                   number: 3550
+#           - path: /pihole(/|$)(.*)
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: pihole
+#                 port:
+#                   number: 80

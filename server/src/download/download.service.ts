@@ -2,7 +2,7 @@ import { Injectable, StreamableFile } from '@nestjs/common';
 import { execSync } from 'child_process';
 import { join } from 'path';
 import { createReadStream } from 'fs';
-import { FilepathService } from 'shared/filepath/filepath.service';
+import { FilepathService } from '../shared/filepath/filepath.service';
 
 @Injectable()
 export class DownloadService {

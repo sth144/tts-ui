@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as gTTS from 'gtts';
-import { FilepathService } from 'shared/filepath/filepath.service';
+import { FilepathService } from '../shared/filepath/filepath.service';
 
 export interface ITextInput {
   title: string;

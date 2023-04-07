@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { execSync } from 'child_process';
-import { FilepathService } from 'shared/filepath/filepath.service';
+import { FilepathService } from '../../shared/filepath/filepath.service';
 
 @Injectable()
 export class SyncTargetService {

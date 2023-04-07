@@ -24,6 +24,7 @@ A text-to-speech web UI and backend for converting text to dictated MP3 files. T
 - local delete feature (UI)
 - show files on remote
   - remote delete feature?
+- relative paths for all packages
 - get tests working
 - get debuggers working
 - get CI/CD working
