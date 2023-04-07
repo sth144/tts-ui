@@ -20,7 +20,7 @@
 
 <div id="download-options">
   <ul *ngIf="mode == 'display'">
-    <li *ngFor="let option of downloadOptionsMeta | keyvalue">
+    <li *ngFor="let option of downloadOptionsMeta | keyvalue" class="text-left">
       <a
         *ngIf="
           option.value.currentValue !== null &&
