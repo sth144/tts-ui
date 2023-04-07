@@ -13,7 +13,6 @@ export class DownloadController {
 
   @Get(':option')
   private downloadAudioFile(@Param('option') downloadOption: string) {
-    console.log('downloadAudioFile ' + downloadOption);
     return this.downloadService.getDownloadStream(downloadOption);
   }
 

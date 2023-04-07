@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { RootState } from '../../../shared/state/root.state';
 import { StreamAudioService } from 'src/app/stream-audio/stream-audio.service';
@@ -42,10 +42,9 @@ export class DownloadAudioComponent implements OnInit {
   }
 
   public downloadOptionSelected(option: string): void {
-    this.streamAudioService.setFileSource(option);
-
     this.downloadAudioService.setDownloadOption(option);
 
+    this.streamAudioService.setFileSource(option);
     this.selectedOption = option;
   }
 
