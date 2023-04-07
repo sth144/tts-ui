@@ -9,10 +9,10 @@ import { FormsModule } from '@angular/forms';
 import { DownloadAudioModule } from './download-audio/download-audio.module';
 import { StreamAudioModule } from './stream-audio/stream-audio.module';
 import { NgxsModule } from '@ngxs/store';
-import { RootState } from './state/root.state';
+import { RootState } from './shared/state/root.state';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// TODO: shared module
 import { MatIconModule } from '@angular/material/icon';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,8 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     DownloadAudioModule,
     StreamAudioModule,
     FormsModule,
-    NgxsModule.forRoot([RootState]),
     BrowserAnimationsModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

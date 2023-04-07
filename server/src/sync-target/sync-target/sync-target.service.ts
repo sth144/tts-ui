@@ -1,27 +1,32 @@
 import { Injectable } from '@nestjs/common';
 import { execSync } from 'child_process';
+import { ServerStateService } from '../../shared/state/state.service';
+import { StateProperties } from 'tts-ui-lib';
 import { FilepathService } from '../../shared/filepath/filepath.service';
 
 @Injectable()
 export class SyncTargetService {
-  constructor(private filepathService: FilepathService) {}
+  constructor(
+    private filepathService: FilepathService,
+    private serverStateService: ServerStateService,
+  ) {}
 
-  // TODO: load sync target URL from database
-  private syncTargetURL: string = '';
   public get SyncTargetURL() {
-    return this.syncTargetURL;
+    return this.serverStateService.valueFor(StateProperties.syncTargetURL);
   }
 
   public setSyncTargetURL(value) {
-    this.syncTargetURL = value;
+    this.serverStateService.dispatch(
+      this.serverStateService.actionFor(StateProperties.syncTargetURL, value),
+    );
   }
 
   public startSyncJob(): void {
     console.log(this.filepathService.getRelativeOutputPath('./'));
     execSync(
-      `rsync -aP ${this.filepathService.getRelativeOutputPath('./')} ${
-        this.syncTargetURL
-      }`,
+      `rsync -aP ${this.filepathService.getRelativeOutputPath(
+        './',
+      )} ${this.serverStateService.valueFor(StateProperties.syncTargetURL)}`,
     );
   }
 }

@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { FilepathService } from '../shared/filepath/filepath.service';
 import { DownloadService } from './download.service';
 
 describe('DownloadService', () => {
@@ -6,7 +7,7 @@ describe('DownloadService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [DownloadService],
+      providers: [DownloadService, FilepathService],
     }).compile();
 
     service = module.get<DownloadService>(DownloadService);

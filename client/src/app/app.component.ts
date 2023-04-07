@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StateService } from './shared/state/state.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tts-ui-client';
+
+  constructor(private stateService: StateService) {}
+  public ngOnInit() {}
 }

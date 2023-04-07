@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { RootState, SetSyncTargetURL } from '../state/root.state';
+import { StateProperties } from 'tts-ui-lib';
+import { RootState, SetSyncTargetURL } from '../shared/state/root.state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SyncTargetService {
-  @Select(RootState.watch('syncTargetURL'))
+  @Select(RootState.watch(StateProperties.syncTargetURL))
   public syncTargetURL$: Observable<string>;
 
   constructor(private httpClient: HttpClient, private store: Store) {}
@@ -22,9 +23,11 @@ export class SyncTargetService {
   }
 
   public getSyncTargetURL() {
-    this.httpClient.get('/api/sync-target').subscribe((res) => {
-      console.log(res);
-    });
+    this.httpClient
+      .get('/api/sync-target', { responseType: 'text' })
+      .subscribe((res) => {
+        this.store.dispatch(new SetSyncTargetURL(res.toString()));
+      });
   }
 
   public triggerSyncJob() {

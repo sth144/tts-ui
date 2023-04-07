@@ -1,13 +1,13 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
   RootState,
-  RootStateModel,
   SetSelectedFileOption,
   UpdateDownloadOptions,
-} from '../state/root.state';
+} from '../shared/state/root.state';
 import { Observable } from 'rxjs';
+import { SessionStateConfigBase, SessionStatePrototype } from 'tts-ui-lib';
 
 export type DownloadOptionMeta = {
   currentValue: string | null;
@@ -23,9 +23,6 @@ export interface DownloadOptionsMeta {
   providedIn: 'root',
 })
 export class DownloadAudioService {
-  @Select(RootState)
-  public rootState$: Observable<RootStateModel>;
-
   constructor(private httpClient: HttpClient, public store: Store) {}
 
   public async getDownloadOptions(): Promise<string[]> {

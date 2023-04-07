@@ -8,48 +8,32 @@ export enum StateProperties {
 
 export type StateElementType = string | number | boolean | null | string[];
 
-export interface IStateProperty<T = StateElementType> {
-  defaultValue: T;
-}
-
 type StateConfigDict = {
-  [property in StateProperties]: IStateProperty<StateElementType>;
+  [property in StateProperties]: StateElementType;
 };
 
 /**
  * used to enforce types
  */
-export class StateConfigBase implements StateConfigDict {
-  [StateProperties.selectedOption]: IStateProperty<string | null>;
-  [StateProperties.downloadOptions]: IStateProperty<string[] | null>;
-  [StateProperties.syncTargetURL]: IStateProperty<string | null>;
+export class ServerStateConfigBase implements Partial<StateConfigDict> {
+  [StateProperties.downloadOptions]: string[] | null;
+  [StateProperties.syncTargetURL]: string | null;
 }
-
-export const StatePrototype: StateConfigBase = {
-  [StateProperties.selectedOption]: null,
-  [StateProperties.downloadOptions]: null,
-  [StateProperties.syncTargetURL]: null,
+export const ServerStatePrototype: ServerStateConfigBase = {
+  [StateProperties.downloadOptions]: [],
+  [StateProperties.syncTargetURL]:
+    "sthinds@openmediavault.local:/home/sthinds/data/Audio",
 };
 
-export interface IStateElementConfig<Key extends StateProperties>
-  extends IStateProperty<StateConfigBase[Key]["defaultValue"]> {
-  key: Key;
-}
-
-export class StateElement<Key extends StateProperties>
-  implements IStateElementConfig<Key>
+export class SessionStateConfigBase
+  extends ServerStateConfigBase
+  implements StateConfigDict
 {
-  readonly _key: Key;
-  public get key(): Key {
-    return this._key;
-  }
-
-  private _defaultValue: StateConfigBase[Key]["defaultValue"];
-  public get defaultValue(): StateConfigBase[Key]["defaultValue"] {
-    return this._defaultValue;
-  }
+  [StateProperties.selectedOption]: string | null;
 }
+export interface ISessionStateConfigBase extends SessionStateConfigBase {}
 
-export type IStateElementCollection = {
-  [key in StateProperties]: StateElement<key>;
+export const SessionStatePrototype: SessionStateConfigBase = {
+  [StateProperties.selectedOption]: null,
+  ...ServerStatePrototype,
 };

@@ -15,7 +15,6 @@ export class SyncTargetController {
   // TODO: authenticate and associate with user
   @Post()
   public postSyncTarget(@Body() requestBody) {
-    console.log(requestBody);
     if ('target' in requestBody) {
       const targetURL = requestBody.target;
       this.syncTargetService.setSyncTargetURL(targetURL);

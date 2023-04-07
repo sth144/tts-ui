@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { RootState, RootStateModel } from 'src/app/state/root.state';
+import { RootState } from '../../../shared/state/root.state';
 import { StreamAudioService } from 'src/app/stream-audio/stream-audio.service';
 import {
   DownloadAudioService,
   DownloadOptionsMeta,
 } from '../../download-audio.service';
+import { StateProperties } from 'tts-ui-lib';
 
 @Component({
   selector: 'app-download-audio',
@@ -15,7 +16,7 @@ import {
 })
 export class DownloadAudioComponent implements OnInit {
   // TODO: use keys, not strings
-  @Select(RootState.watch('downloadOptions'))
+  @Select(RootState.watch(StateProperties.downloadOptions))
   public downloadOptions$: Observable<string[]>;
 
   // TODO: migrate to downloadOptionsMeta for dirty, deleted, submit etc.

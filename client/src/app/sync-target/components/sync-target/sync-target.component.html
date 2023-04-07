@@ -8,7 +8,8 @@
   </div>
   <div>
     <button (click)="submitSyncTargetURL()">Submit</button>
-    {{ syncTargetURL$ | async }}
   </div>
   <div><button (click)="triggerSyncJob()">Sync</button></div>
 </div>
+
+{{ syncTargetURL$ | async }}

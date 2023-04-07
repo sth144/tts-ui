@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { FilepathService } from '../../shared/filepath/filepath.service';
 import { SyncTargetService } from './sync-target.service';
 
 describe('SyncTargetService', () => {
@@ -6,7 +7,7 @@ describe('SyncTargetService', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [SyncTargetService],
+      providers: [SyncTargetService, FilepathService],
     }).compile();
 
     service = module.get<SyncTargetService>(SyncTargetService);
