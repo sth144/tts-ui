@@ -28,7 +28,7 @@ A text-to-speech web UI and backend for converting text to dictated MP3 files. T
 
 ## Usage
 
-![](https://github.com/sth144/tts-ui/client/src/assets/demo07042023.gif)
+![](https://github.com/sth144/tts-ui/blob/master/client/src/assets/demo07042023.gif)
 
 ## TODO:
 
