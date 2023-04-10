@@ -65,7 +65,7 @@ ENV CLIENT_BUNDLE_DIR=/srv/dist/tts-ui-client
 ENV SERVER_CONFIG_PATH=/etc/tts-ui
 ARG NODE_ENV=prod
 ENV NODE_ENV=${NODE_ENV}
-CMD ["npm", "start"]
+CMD ["node", "dist/src/main.jsq"]
 
 # TODO get tests passing
 # FROM deploy as test
