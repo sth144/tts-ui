@@ -2,7 +2,7 @@
 FROM ubuntu:latest AS base
 RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 RUN apt-get update
-RUN apt-get install -y npm curl rsync
+RUN apt-get install -y npm curl iputils-ping ssh rsync
 
 # nvm environment variables
 ENV NVM_DIR /usr/local/nvm
