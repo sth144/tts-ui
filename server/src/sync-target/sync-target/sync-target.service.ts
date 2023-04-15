@@ -24,7 +24,7 @@ export class SyncTargetService {
   public startSyncJob(): void {
     console.log(this.filepathService.getRelativeOutputPath('./'));
     execSync(
-      `rsync -aP ${this.filepathService.getRelativeOutputPath(
+      `rsync -e "ssh -o StrictHostKeyChecking=no" -aP ${this.filepathService.getRelativeOutputPath(
         './',
       )} ${this.serverStateService.valueFor(StateProperties.syncTargetURL)}`,
     );
